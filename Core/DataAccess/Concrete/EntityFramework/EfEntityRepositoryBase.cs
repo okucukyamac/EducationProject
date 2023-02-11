@@ -1,4 +1,4 @@
-﻿using Core.Data.Abstract;
+﻿using Core.DataAccess.Abstract;
 using Core.Entittes.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,15 +8,17 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Data.Concrete.EntityFramework
+namespace Core.DataAccess.Concrete.EntityFramework
 {
     public class EfEntityRepositoryBase<TEntity> : IEntityRepository<TEntity> where TEntity : class, IEntity, new()
     {
         private readonly DbContext _context;
+
         public EfEntityRepositoryBase(DbContext context)
         {
             _context = context;
         }
+
         public async Task AddAsync(TEntity entity)
         {
             await _context.Set<TEntity>().AddAsync(entity);
