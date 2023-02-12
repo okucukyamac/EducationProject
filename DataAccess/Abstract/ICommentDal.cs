@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IArticleRepository:IEntityRepository<Article>
+    public interface ICommentDal:IEntityRepository<Comment>
     {
-
     }
 }
