@@ -15,6 +15,6 @@ namespace Core.Entittes.Abstract
         public virtual bool IsActive { get; set; } = true;
         public virtual string InsertByName { get; set; } = "Admin";
         public virtual string ModifiedByName { get; set; } = "Admin";
-        public virtual string None { get; set; }
+        public virtual string Note { get; set; }
     }
 }
