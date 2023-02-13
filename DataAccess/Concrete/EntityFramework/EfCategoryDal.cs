@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class CategoryDal : EfEntityRepositoryBase<Category>, ICategoryDal
+    public class EfCategoryDal : EfEntityRepositoryBase<Category>, ICategoryDal
     {
-        public CategoryDal(DbContext context) : base(context)
+        public EfCategoryDal(DbContext context) : base(context)
         {
         }
     }

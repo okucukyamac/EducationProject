@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class ArticleDal : EfEntityRepositoryBase<Article>, IArticleDal
+    public class EfArticleDal : EfEntityRepositoryBase<Article>, IArticleDal
     {
-        public ArticleDal(DbContext context) : base(context)
+        public EfArticleDal(DbContext context) : base(context)
         {
         }
     }
