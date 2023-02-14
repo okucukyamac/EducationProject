@@ -53,7 +53,9 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
                     InsertDate = DateTime.Now,
                     ModifiedDate = DateTime.Now,
                     Note = "C# 9.0 ve .NET5 yenilikleri",
-                    UserId= 1
+                    UserId= 1,
+                    ViewsCount=100,
+                    CommentCount=1
                 },
                 new Article
                 {
@@ -73,7 +75,9 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
                     InsertDate = DateTime.Now,
                     ModifiedDate = DateTime.Now,
                     Note = "C++ 11 yenilikleri",
-                    UserId = 1
+                    UserId = 1,
+                         ViewsCount = 295,
+                    CommentCount = 1
                 },
                 new Article
                 {
@@ -93,7 +97,9 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
                     InsertDate = DateTime.Now,
                     ModifiedDate = DateTime.Now,
                     Note = "Javascript ES2020 yenilikleri",
-                    UserId = 1
+                    UserId = 1,
+                    ViewsCount = 12,
+                    CommentCount = 1
                 }
                 );
         }

@@ -42,6 +42,7 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
                 Email = "ogushan888@gmail.com",
                 IsActive = true,
                 IsDeleted = false,
+                Picture = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSX4wVGjMQ37PaO4PdUVEAliSLi8-c2gJ1zvQ&usqp=CAU",
                 InsertByName = "InitialCreate",
                 ModifiedByName = "InitialCreate",
                 InsertDate = DateTime.Now,
