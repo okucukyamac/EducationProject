@@ -25,6 +25,49 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(c => c.Note).IsRequired(true).HasMaxLength(500);
             builder.ToTable("Categories");
 
+            builder.HasData(
+                new Category
+                {
+                    Id = 1,
+                    Name = "C#",
+                    Description = "C# Programlama Dili ile ilgili En Güncel Bilgiler",
+                    IsActive = true,
+                    IsDeleted = false,
+                    InsertByName = "InitialCreate",
+                    ModifiedByName = "InitialCreate",
+                    InsertDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    Note = "C# Blog Kategorisi"
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "C++",
+                    Description = "C++ Programlama Dili ile ilgili En Güncel Bilgiler",
+                    IsActive = true,
+                    IsDeleted = false,
+                    InsertByName = "InitialCreate",
+                    ModifiedByName = "InitialCreate",
+                    InsertDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    Note = "C++ Blog Kategorisi"
+
+                },
+                new Category
+                {
+                    Id = 3,
+                    Name = "JavaScript",
+                    Description = "JavaScript Programlama Dili ile ilgili En Güncel Bilgiler",
+                    IsActive = true,
+                    IsDeleted = false,
+                    InsertByName = "InitialCreate",
+                    ModifiedByName = "InitialCreate",
+                    InsertDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    Note = "JavaScript Blog Kategorisi"
+                }
+                );
+
         }
     }
 }

@@ -32,6 +32,24 @@ namespace DataAccess.Concrete.EntityFramework.Mappings
             builder.Property(u => u.IsDeleted).IsRequired();
             builder.Property(u => u.Note).IsRequired(true).HasMaxLength(500);
             builder.ToTable("Users");
+            builder.HasData(new User
+            {
+                Id = 1,
+                RoleId = 1,
+                FirstName = "Oğuzhan",
+                LastName = "Küçükyamaç",
+                Username = "okucukyamac",
+                Email = "ogushan888@gmail.com",
+                IsActive = true,
+                IsDeleted = false,
+                InsertByName = "InitialCreate",
+                ModifiedByName = "InitialCreate",
+                InsertDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                Note = "Admin Kullanıcısı",
+                Description = "İlk Admin Kullanıcısı",
+                PasswordHash= Encoding.ASCII.GetBytes("0192023a7bbd73250516f069df18b500")
+            });
         }
     }
 }
