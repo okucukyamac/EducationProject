@@ -62,9 +62,7 @@ namespace Core.DataAccess.Concrete.EntityFramework
         {
             IQueryable<TEntity> query = _context.Set<TEntity>();
             if (predicate != null)
-            {
                 query = query.Where(predicate);
-            }
 
             if (includeProperties.Any())
             {
