@@ -39,7 +39,7 @@ namespace Core.DataAccess.Concrete.EntityFramework
             await Task.Run(() => { _context.Set<TEntity>().Remove(entity); });
         }
 
-        public async Task<IList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, params Expression<Func<TEntity, object>>[] includeProperties)
+        public async Task<IList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includeProperties)
         {
             IQueryable<TEntity> query = _context.Set<TEntity>();
             if (predicate!=null)
@@ -58,7 +58,7 @@ namespace Core.DataAccess.Concrete.EntityFramework
             return await query.ToListAsync();
         }
 
-        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate, params Expression<Func<TEntity, object>>[] includeProperties)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate=null, params Expression<Func<TEntity, object>>[] includeProperties)
         {
             IQueryable<TEntity> query = _context.Set<TEntity>();
             if (predicate != null)
