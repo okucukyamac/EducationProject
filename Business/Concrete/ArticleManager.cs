@@ -158,7 +158,6 @@ namespace Business.Concrete
             Article article = _mapper.Map<Article>(articleUpdateDto);
             article.ModifiedByName = modifiedByName;
 
-
             await _unitOfWork.Articles.UpdateAsync(article).ContinueWith(t => _unitOfWork.SaveAsync());
 
             return new Result(ResultStatus.Success, $"{articleUpdateDto.Title} isimli makale başarıyla güncellendi.");
