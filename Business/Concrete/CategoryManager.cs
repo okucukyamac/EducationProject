@@ -4,6 +4,7 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.ComplexTypes;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete;
 using Entities.Dtos;
 using System;
@@ -19,14 +20,11 @@ namespace Business.Concrete
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CategoryManager(IMapper mapper)
+        public CategoryManager(IMapper mapper,IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
-        }
-
-        public CategoryManager(IUnitOfWork unitOfWork)
-        {
             _unitOfWork = unitOfWork;
+
         }
 
         public async Task<IResult> Add(CategoryAddDto categoryAddDto, string createdByName)
