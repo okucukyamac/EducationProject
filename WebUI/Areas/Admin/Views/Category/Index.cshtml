@@ -5,7 +5,7 @@
     ViewBag.Title = "Kategoriler Index";
 }
 
-@if (Model.ResultStatus == ResultStatus.Success)
+@if (Model.ResultStatus == ResultStatus.Error)
 {
 
     <div class="card mb-4 mt-2">
@@ -65,6 +65,13 @@
             </div>
         </div>
     </div>
+}else
+{
+     <div class="alert alert-danger mt-3">
+         @Model.Message <br/>
+         Dashboard sayfasına geri dönmek için lütfen 
+         <a class="alert-link" asp-area="Admin" asp-controller="Home" asp-action="Index">tıklayınız</a>
+     </div>
 }
 
 @section js{

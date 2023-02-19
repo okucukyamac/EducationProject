@@ -75,7 +75,12 @@ namespace Business.Concrete
                     ResultStatus = ResultStatus.Success
                 }); ;
             }
-            return new DataResult<CategoryListDto>(ResultStatus.Error, "Hiç bir kategori bulunamadı.", null);
+            return new DataResult<CategoryListDto>(ResultStatus.Error, "Hiç bir kategori bulunamadı.", new CategoryListDto
+            {
+                Categories=null,
+                ResultStatus = ResultStatus.Error,
+                Message="Hiç bir kategori bulunamadı."
+            });
         }
 
         public async Task<IDataResult<CategoryListDto>> GetAllByNonDeleted()
