@@ -20,7 +20,7 @@ namespace Business.Concrete
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public CategoryManager(IMapper mapper,IUnitOfWork unitOfWork)
+        public CategoryManager(IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
@@ -33,7 +33,8 @@ namespace Business.Concrete
             category.InsertByName = createdByName;
             category.ModifiedByName = createdByName;
 
-            await _unitOfWork.Categories.AddAsync(category).ContinueWith(t => _unitOfWork.SaveAsync());
+            await _unitOfWork.Categories.AddAsync(category);
+            await _unitOfWork.SaveAsync();
 
             return new Result(ResultStatus.Success, $"{categoryAddDto.Name} adlı kategori başarıyla eklenmiştir.");
         }
@@ -47,7 +48,10 @@ namespace Business.Concrete
             category.IsDeleted = true;
             category.ModifiedDate = DateTime.Now;
             category.ModifiedByName = modifiedByName;
-            await _unitOfWork.Categories.UpdateAsync(category).ContinueWith(t => _unitOfWork.SaveAsync());
+
+            await _unitOfWork.Categories.UpdateAsync(category);
+            await _unitOfWork.SaveAsync();
+
             return new Result(ResultStatus.Success, $"{category.Name} adlı kategori başarıyla silinmiştir.");
         }
 
@@ -77,9 +81,9 @@ namespace Business.Concrete
             }
             return new DataResult<CategoryListDto>(ResultStatus.Error, "Hiç bir kategori bulunamadı.", new CategoryListDto
             {
-                Categories=null,
+                Categories = null,
                 ResultStatus = ResultStatus.Error,
-                Message="Hiç bir kategori bulunamadı."
+                Message = "Hiç bir kategori bulunamadı."
             });
         }
 
@@ -115,7 +119,8 @@ namespace Business.Concrete
             if (category != null)
                 return new Result(ResultStatus.Error, "Böyle bir kategori bulunamadı.");
 
-            await _unitOfWork.Categories.DeleteAsync(category).ContinueWith(t => _unitOfWork.SaveAsync());
+            await _unitOfWork.Categories.DeleteAsync(category);
+            await _unitOfWork.SaveAsync();
 
             return new Result(ResultStatus.Success, $"{category.Name} adlı kategori başarıyla veritabanından silinmiştir.");
         }
@@ -124,9 +129,10 @@ namespace Business.Concrete
         {
             var category = _mapper.Map<Category>(categoryUpdateDto);
 
-            category.ModifiedByName= modifiedByName;
+            category.ModifiedByName = modifiedByName;
 
-            await _unitOfWork.Categories.UpdateAsync(category).ContinueWith(t => _unitOfWork.SaveAsync());
+            await _unitOfWork.Categories.UpdateAsync(category);
+            await _unitOfWork.SaveAsync();
 
             return new Result(ResultStatus.Success, $"{categoryUpdateDto.Name} adlı kategori başarıyla güncellenmiştir.");
         }

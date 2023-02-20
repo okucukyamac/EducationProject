@@ -34,7 +34,8 @@ namespace Business.Concrete
             article.ModifiedByName = createdByName;
             article.UserId = 1;
 
-            await _unitOfWork.Articles.AddAsync(article).ContinueWith(t => _unitOfWork.SaveAsync());
+            await _unitOfWork.Articles.AddAsync(article);
+            await _unitOfWork.SaveAsync();
 
             return new Result(ResultStatus.Success, $"{articleAddDto.Title} başlıklı makale başarıyla eklendi.");
         }
@@ -50,7 +51,10 @@ namespace Business.Concrete
             article.IsDeleted = true;
             article.ModifiedByName = modifiedByName;
             article.ModifiedDate = DateTime.Now;
-            await _unitOfWork.Articles.UpdateAsync(article).ContinueWith(t => _unitOfWork.SaveAsync());
+
+            await _unitOfWork.Articles.UpdateAsync(article);
+            await _unitOfWork.SaveAsync();
+
             return new Result(ResultStatus.Success, $"{article.Title} başlıklı makale başarıyla silindi.");
 
         }
@@ -147,7 +151,9 @@ namespace Business.Concrete
 
             var article = await _unitOfWork.Articles.GetAsync(a => a.Id == articleId);
 
-            await _unitOfWork.Articles.DeleteAsync(article).ContinueWith(t => _unitOfWork.SaveAsync());
+            await _unitOfWork.Articles.DeleteAsync(article);
+            await _unitOfWork.SaveAsync();
+
             return new Result(ResultStatus.Success, $"{article.Title} başlıklı makale başarıyla veritabanından silindi.");
         }
 
@@ -156,7 +162,8 @@ namespace Business.Concrete
             Article article = _mapper.Map<Article>(articleUpdateDto);
             article.ModifiedByName = modifiedByName;
 
-            await _unitOfWork.Articles.UpdateAsync(article).ContinueWith(t => _unitOfWork.SaveAsync());
+            await _unitOfWork.Articles.UpdateAsync(article);
+            await _unitOfWork.SaveAsync();
 
             return new Result(ResultStatus.Success, $"{articleUpdateDto.Title} isimli makale başarıyla güncellendi.");
         }
