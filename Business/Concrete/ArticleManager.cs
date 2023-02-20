@@ -37,11 +37,11 @@ namespace Business.Concrete
             var addedArticle = await _unitOfWork.Articles.AddAsync(article);
             await _unitOfWork.SaveAsync();
 
-            return new DataResult<ArticleDto>(ResultStatus.Success, $"{articleAddDto.Title} başlıklı makale başarıyla eklendi.",new ArticleDto
+            return new DataResult<ArticleDto>(ResultStatus.Success, $"{articleAddDto.Title} başlıklı makale başarıyla eklendi.", new ArticleDto
             {
-                Article= addedArticle,
-                ResultStatus=ResultStatus.Success,
-                Message= $"{articleAddDto.Title} başlıklı makale başarıyla eklendi."
+                Article = addedArticle,
+                ResultStatus = ResultStatus.Success,
+                Message = $"{articleAddDto.Title} başlıklı makale başarıyla eklendi."
             });
         }
 
@@ -69,7 +69,12 @@ namespace Business.Concrete
             var article = await _unitOfWork.Articles.GetAsync(a => a.Id == articleId, a => a.User, a => a.Category);
 
             if (article == null)
-                return new DataResult<ArticleDto>(ResultStatus.Error, "Böyle bir makale bulunamadı", null);
+                return new DataResult<ArticleDto>(ResultStatus.Error, "Böyle bir makale bulunamadı", new ArticleDto
+                {
+                    Article = null,
+                    ResultStatus = ResultStatus.Error,
+                    Message = "Böyle bir makale bulunamadı"
+                });
 
             return new DataResult<ArticleDto>(ResultStatus.Success, new ArticleDto
             {
