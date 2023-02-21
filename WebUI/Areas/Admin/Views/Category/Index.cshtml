@@ -17,6 +17,9 @@
             Kategoriler
         </div>
         <div class="card-body">
+            <div class="spinner-border" role="status" style="display:none;">
+                <span class="sr-only">Yükleniyor...</span>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="categoriesTable" width="100%" cellspacing="0">
                     <thead>
@@ -382,17 +385,17 @@ else
                                     placeHolderDiv.find('.modal').modal('hide');
                                     console.log(categoryAddAjaxModel)
                                     const newTableRow = (
-                                    '<tr><td>' 
-                                    +categoryAddAjaxModel.CategoryDto.Category.Id +'</td><td>' 
-                                    +categoryAddAjaxModel.CategoryDto.Category.Name + ' </td><td>'
-                                    +categoryAddAjaxModel.CategoryDto.Category.Description  +' </td><td>' 
-                                    +categoryAddAjaxModel.CategoryDto.Category.IsActive  +' </td><td> ' 
-                                    +categoryAddAjaxModel.CategoryDto.Category.IsDeleted  +'</td><td>' 
-                                    +categoryAddAjaxModel.CategoryDto.Category.Note  +'</td><td>' 
-                                    +convertToShortDate(categoryAddAjaxModel.CategoryDto.Category.InsertDate)  +'</td><td> '
-                                    +categoryAddAjaxModel.CategoryDto.Category.InsertByName  +' </td> <td> ' 
-                                    +convertToShortDate(categoryAddAjaxModel.CategoryDto.Category.ModifiedDate)  +'</td ><td> ' 
-                                    +categoryAddAjaxModel.CategoryDto.Category.ModifiedByName+' </td></tr>')
+                                        '<tr><td>'
+                                        + categoryAddAjaxModel.CategoryDto.Category.Id + '</td><td>'
+                                        + categoryAddAjaxModel.CategoryDto.Category.Name + ' </td><td>'
+                                        + categoryAddAjaxModel.CategoryDto.Category.Description + ' </td><td>'
+                                        + categoryAddAjaxModel.CategoryDto.Category.IsActive + ' </td><td> '
+                                        + categoryAddAjaxModel.CategoryDto.Category.IsDeleted + '</td><td>'
+                                        + categoryAddAjaxModel.CategoryDto.Category.Note + '</td><td>'
+                                        + convertToShortDate(categoryAddAjaxModel.CategoryDto.Category.InsertDate) + '</td><td> '
+                                        + categoryAddAjaxModel.CategoryDto.Category.InsertByName + ' </td> <td> '
+                                        + convertToShortDate(categoryAddAjaxModel.CategoryDto.Category.ModifiedDate) + '</td ><td> '
+                                        + categoryAddAjaxModel.CategoryDto.Category.ModifiedByName + ' </td></tr>')
 
                                     const newTableRowObject = $(newTableRow);
                                     newTableRowObject.hide();
@@ -400,9 +403,9 @@ else
                                     newTableRowObject.fadeIn(3500);
                                     toastr.success(categoryAddAjaxModel.CategoryDto.Message, 'İşlem Başarılı!')
                                 }
-                                else{
+                                else {
                                     let summaryText = "";
-                                    $('#validationSummary > ul > li').each(function(){
+                                    $('#validationSummary > ul > li').each(function () {
                                         let text = $(this).text();
                                         summaryText = text + '\n';
                                     });
