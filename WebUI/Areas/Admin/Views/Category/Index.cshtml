@@ -380,13 +380,33 @@ else
                                 const isValid = newFormBody.find('[name="IsValid"]').val() === 'True';
                                 if (isValid) {
                                     placeHolderDiv.find('.modal').modal('hide');
-                                    const newTableRow = '<tr><td> ${ categoryAddAjaxModel.CategoryDto.Category.Id }</td>                                            <td> ${categoryAddAjaxModel.CategoryDto.Category.Name </td>                                                <td> ${categoryAddAjaxModel.CategoryDto.Category.Description </td>                                                    <td> ${categoryAddAjaxModel.CategoryDto.Category.IsActive </td>                                                        <td> ${categoryAddAjaxModel.CategoryDto.Category.IsDeleted </td>                                                            <td> ${categoryAddAjaxModel.CategoryDtoCategory.Note </td><td>${categoryAddAjaxModel.CategoryDto.Category.InsertDate</td><td> ${categoryAddAjaxModel.CategoryDto.Category.InsertByName </td> <td> ${categoryAddAjaxModel.CategoryDto.Category.ModifiedDate</td ><td> ${categoryAddAjaxModel.CategoryDto.Category.ModifiedByName </td>              </tr>'
+                                    console.log(categoryAddAjaxModel)
+                                    const newTableRow = (
+                                    '<tr><td>' 
+                                    +categoryAddAjaxModel.CategoryDto.Category.Id +'</td><td>' 
+                                    +categoryAddAjaxModel.CategoryDto.Category.Name + ' </td><td>'
+                                    +categoryAddAjaxModel.CategoryDto.Category.Description  +' </td><td>' 
+                                    +categoryAddAjaxModel.CategoryDto.Category.IsActive  +' </td><td> ' 
+                                    +categoryAddAjaxModel.CategoryDto.Category.IsDeleted  +'</td><td>' 
+                                    +categoryAddAjaxModel.CategoryDto.Category.Note  +'</td><td>' 
+                                    +convertToShortDate(categoryAddAjaxModel.CategoryDto.Category.InsertDate)  +'</td><td> '
+                                    +categoryAddAjaxModel.CategoryDto.Category.InsertByName  +' </td> <td> ' 
+                                    +convertToShortDate(categoryAddAjaxModel.CategoryDto.Category.ModifiedDate)  +'</td ><td> ' 
+                                    +categoryAddAjaxModel.CategoryDto.Category.ModifiedByName+' </td></tr>')
 
                                     const newTableRowObject = $(newTableRow);
-                                    newTableRow.hide();
-                                    $('#categories').append(newTableRowObject);
+                                    newTableRowObject.hide();
+                                    $('#categoriesTable').append(newTableRowObject);
                                     newTableRowObject.fadeIn(3500);
-                                    toastr.success('${categoryAddAjaxModel.CategoryDto.Message}','İşlem Başarılı!')
+                                    toastr.success(categoryAddAjaxModel.CategoryDto.Message, 'İşlem Başarılı!')
+                                }
+                                else{
+                                    let summaryText = "";
+                                    $('#validationSummary > ul > li').each(function(){
+                                        let text = $(this).text();
+                                        summaryText = text + '\n';
+                                    });
+                                    toastr.warning(summaryText);
                                 }
                             })
                         })
