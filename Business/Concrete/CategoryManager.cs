@@ -47,7 +47,7 @@ namespace Business.Concrete
         public async Task<IResult> Delete(int categoryId, string modifiedByName)
         {
             var category = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId);
-            if (category != null)
+            if (category == null)
                 return new Result(ResultStatus.Error, "Böyle bir kategori bulunamadı.");
 
             category.IsDeleted = true;

@@ -474,6 +474,53 @@ else
 
                 });
 
+            $(document).on('click', '.btn-delete',
+                function (event) {
+                    event.preventDefault();
+                    const id = $(this).attr('data-id');
+                    Swal.fire({
+                        title: 'Silmek istediğinize emin misiniz?',
+                        text: "Seçili kategori silinecektir.!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Evet, silmek istiyorum!',
+                        cancelButtonText: 'Hayır, silmek istemiyorum!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                type: 'POST',
+                                dataType: 'json',
+                                data: { categoryId: id },
+                                url: '/Admin/Category/Delete',
+                                success: function (data) {
+                                    const result = jQuery.parseJSON(data);
+                                    console.log(result)
+                                    if (result.ResultStatus === 0) {
+                                        Swal.fire(
+                                            'Silindi!',
+                                            'Seçili kategori başarıyla silinmiştirç',
+                                            'success'
+                                        )
+                                        const tableRow = $('[name="' + id + '"]');
+                                        tableRow.fadeOut(3500);
+                                    }
+                                    else {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Bir hata oluştu!',
+                                            text: result.Message,
+                                        })
+                                    }
+                                },
+                                error: function (err) { console.log(err); }
+                            })
+                        }
+                    })
+
+                })
+
         });
     </script>
 }
