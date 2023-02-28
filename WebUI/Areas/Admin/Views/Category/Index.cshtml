@@ -141,7 +141,16 @@ else
                                                     + convertToShortDate(category.InsertDate) + '</td><td> '
                                                     + category.InsertByName + '</td><td>'
                                                     + convertToShortDate(category.ModifiedDate) + '</td><td>'
-                                                    + category.ModifiedByName + '</td>< /tr>';
+                                                    + category.ModifiedByName + '</td>'
+                                                    + '<td>'
+                                                    + '<button class="btn btn-info btn-sm">'
+                                                    + '<span class="fas fa-edit"> </span> Düzenle'
+                                                    + '</button>'
+                                                    + '<button class="btn btn-danger btn-sm btn-delete" data - id="' + category.Id + '">'
+                                                    + '<span class="fas fa-minus-circle" > </span> Sil'
+                                                    + '</button>'
+                                                    + '</td>'
+                                                    + '</tr>';
                                             });
                                         $('#categoriesTable > tbody').replaceWith(tableBody);
                                         $('.spinner-border').hide();
@@ -156,7 +165,8 @@ else
                                 },
                                 error: function (err) {
                                     console.log(err);
-                                    toastr.error(err.responseText, 'İşlem Başarısız!');
+                                    toastr.error(err.responseText, 'Hata!');
+                                    $('#categoriesTable').fadeIn(1000);
                                     $('.spinner-border').hide();
 
 
@@ -503,7 +513,7 @@ else
                                             'Seçili kategori başarıyla silinmiştirç',
                                             'success'
                                         )
-                                        const tableRow = $('[name="' + id + '"]');
+                                        const tableRow = $('[name="' + id + ']');
                                         tableRow.fadeOut(3500);
                                     }
                                     else {
