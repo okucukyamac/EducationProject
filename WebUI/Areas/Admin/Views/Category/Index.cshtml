@@ -505,9 +505,8 @@ else
                                 data: { categoryId: id },
                                 url: '/Admin/Category/Delete',
                                 success: function (data) {
-                                    const result = jQuery.parseJSON(data);
-                                    console.log(result)
-                                    if (result.ResultStatus === 0) {
+                                    const categoryDto = jQuery.parseJSON(data);
+                                    if (categoryDto.ResultStatus === 0) {
                                         Swal.fire(
                                             'Silindi!',
                                             'Seçili kategori başarıyla silinmiştirç',
